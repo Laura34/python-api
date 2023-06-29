@@ -8,11 +8,14 @@ class Conexion:
         self.database = 'bancos'
 
     def conectar(self, user, password, host):
+        self.user=user
+        self.password=password
+        self.host=host
         try:
             self.connection = connect(
-                host=host,
-                user=user,
-                password=password,
+                host=self.host,
+                user=self.user,
+                password=self.password,
                 database=self.database
             )
             if self.connection.is_connected():
@@ -23,6 +26,7 @@ class Conexion:
 
 
     def leer(self):
+        self.conectar(self.user, self.password, self.host)
         if self.connection.is_connected():
             self.cursor = self.connection.cursor()
             try:
@@ -30,6 +34,7 @@ class Conexion:
             except Error as e:
                 return "¡Error!" + '\n' + str(e)
             estudiantes = self.cursor.fetchall()
+            self.connection.close()
             return estudiantes
 
     def insertar(self):
@@ -48,4 +53,5 @@ class Conexion:
             except Error as e:
                 return "¡Error!" + '\n' + str(e)
             self.connection.commit()
+            print('commited')
             return '¡Éxito!'

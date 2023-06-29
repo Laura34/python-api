@@ -29,8 +29,6 @@ STOP_EVENT.set()
 thread = LoopThread(STOP_EVENT)
 thread.start()
 
-
-
 app = Flask(__name__)
 
 @app.route('/', methods=('GET', 'POST'))
