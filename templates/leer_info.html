@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table, th, td {border:1px solid black; }
+</style>
+<body>
+<h2>Lectura de Información</h2>
+<div>
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ruta</th>
+            <th>iban</th>
+        </tr>
+    {% for banco in bancos %}
+        <tr>
+            <td>{{ banco[0] }}</td>
+            <td>{{ banco[1] }}</td>
+            <td>{{ banco[2] }}</td>
+            <td>{{ banco[3] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+</body>
+</html>
